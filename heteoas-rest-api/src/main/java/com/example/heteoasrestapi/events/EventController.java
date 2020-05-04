@@ -1,5 +1,6 @@
 package com.example.heteoasrestapi.events;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,10 +14,16 @@ import static org.springframework.hateoas.server.mvc.ControllerLinkBuilder.linkT
 @RequestMapping(value = "/api/events", produces = MediaTypes.HAL_JSON_VALUE)
 public class EventController {
 
-    @PostMapping("/api/events")
+    @Autowired
+    private EventRepository eventRepository;
+
+    @PostMapping
     public ResponseEntity<?> createEvent(@RequestBody Event event) {
-        var createUri = linkTo(EventController.class).slash("{id}").toUri();
-        event.setId(10);
+
+        // db 기록
+        Event newEvent = eventRepository.save(event);
+
+        var createUri = linkTo(EventController.class).slash(newEvent.getId()).toUri();
         return ResponseEntity.created(createUri).body(event);
     }
 }
