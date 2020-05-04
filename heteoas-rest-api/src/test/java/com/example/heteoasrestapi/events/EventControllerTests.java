@@ -1,5 +1,6 @@
 package com.example.heteoasrestapi.events;
 
+import com.example.heteoasrestapi.common.TestDescription;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -33,6 +34,7 @@ public class EventControllerTests {
     private ObjectMapper objectMapper;
 
     @Test
+    @TestDescription("정상적으로 이벤트를 생성하는 테스트")
     public void createEvent() throws Exception {
         // 요청 파라미터
         EventDto eventDto = EventDto.builder()
@@ -66,6 +68,7 @@ public class EventControllerTests {
     }
 
     @Test
+    @TestDescription("입력받을 수 없는 값을 사용한 경우 이벤트 생성시 에러가 발생하는 테스트")
     public void createEvent_BadRequest() throws Exception {
         // 요청 파라미터
         Event event = Event.builder()
@@ -97,6 +100,7 @@ public class EventControllerTests {
     }
 
     @Test
+    @TestDescription("입력값이 비어있는 경우 이벤트 생성시 에러가 발생하는 테스트")
     public void createEvent_BadRequest_EmptyInput() throws Exception {
         EventDto eventDto = EventDto.builder().build();
         mockMvc.perform(post("/api/events")
@@ -108,6 +112,7 @@ public class EventControllerTests {
     }
 
     @Test
+    @TestDescription("입력값이 잘못된 경우 이벤트 생성시 에러가 발생하는 테스트")
     public void createEvent_BadRequest_WrongInput() throws Exception {
         // 요청 파라미터
         EventDto eventDto = EventDto.builder()
@@ -128,6 +133,12 @@ public class EventControllerTests {
                 .accept(MediaTypes.HAL_JSON)
                 .content(objectMapper.writeValueAsString(eventDto)))
                 .andDo(print())
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$[0].objectName").exists())
+//                .andExpect(jsonPath("$[0].field").exists())
+                .andExpect(jsonPath("$[0].defaultMessage").exists())
+                .andExpect(jsonPath("$[0].code").exists())
+//                .andExpect(jsonPath("$[0].rejectedValue").exists())
+        ;
     }
 }
