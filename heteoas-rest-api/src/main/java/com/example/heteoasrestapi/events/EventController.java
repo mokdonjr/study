@@ -40,6 +40,7 @@ public class EventController {
 
         // 입력값 제한을 위한 dto와 modelMapper 활용
         Event event = modelMapper.map(eventDto, Event.class);
+        event.update();// 서비스로 위임하는게 좋음
 
         // db 기록
         Event newEvent = eventRepository.save(event);
