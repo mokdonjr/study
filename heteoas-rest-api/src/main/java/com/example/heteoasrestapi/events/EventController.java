@@ -1,5 +1,6 @@
 package com.example.heteoasrestapi.events;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,13 @@ public class EventController {
     @Autowired
     private EventRepository eventRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @PostMapping
-    public ResponseEntity<?> createEvent(@RequestBody Event event) {
+    public ResponseEntity<?> createEvent(@RequestBody EventDto eventDto) {
+        // 입력값 제한을 위한 dto와 modelMapper 활용
+        Event event = modelMapper.map(eventDto, Event.class);
 
         // db 기록
         Event newEvent = eventRepository.save(event);
