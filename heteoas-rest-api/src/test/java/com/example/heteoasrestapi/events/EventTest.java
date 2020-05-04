@@ -4,7 +4,6 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -47,12 +46,17 @@ public class EventTest {
         assertThat(event.getDescription()).isEqualTo(description);
     }
 
+    private Object[] parametersForTestFree() { // 메서드 이름 컨벤션이 존재
+        return new Object[] {
+                new Object[] {0, 0, true},
+                new Object[] {100, 0, false},
+                new Object[] {0, 100, false},
+                new Object[] {100, 200, false},
+        };
+    }
+
     @Test
-    @Parameters({
-            "0, 0, true",
-            "100, 0, false",
-            "0, 100, false",
-    })
+    @Parameters
     public void testFree(int basePrice, int maxPrice, boolean isFree) {
         // given
         Event event = Event.builder()
@@ -67,28 +71,27 @@ public class EventTest {
         assertThat(event.isFree()).isEqualTo(isFree);
     }
 
+    private Object[] parametersForTestOffline() {
+        return new Object[] {
+                new Object[] {"강남역 네이버 D2 스타텁 팩토리", true},
+                new Object[] {null, false},
+                new Object[] {" ", false},
+        };
+    }
+
     @Test
-    public void testOffline() {
+    @Parameters
+    public void testOffline(String location, boolean isOffline) {
         // given
         Event event = Event.builder()
-                .location("강남역 네이버 D2 스타텁 팩토리")
+                .location(location)
                 .build();
 
         // when
         event.update();
 
         // then
-        assertThat(event.isOffline()).isTrue();
-
-        // given
-        event = Event.builder()
-                .build();
-
-        // when
-        event.update();
-
-        // then
-        assertThat(event.isOffline()).isFalse();
+        assertThat(event.isOffline()).isEqualTo(isOffline);
     }
 
 }
