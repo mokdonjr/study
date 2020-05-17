@@ -1,9 +1,9 @@
-package operatable;
+package calculatable.operatable;
 
 /**
  * 계산기 인터페이스
  */
-public interface Calculatable {
+public interface Operatable {
 	
 	/**
 	 * 계산 결과를 반환

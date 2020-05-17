@@ -1,7 +1,7 @@
 package core;
 
-import operatable.CalculatorFactory;
-import operatable.CalculatorFactory.CalculatorType;
+import calculatable.CalculatorFactory;
+import calculatable.CalculatorFactory.CalculatorType;
 
 public class MainApp {
 
