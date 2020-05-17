@@ -1,28 +1,28 @@
 package core;
 
-import calculatable.CalculatorFactory;
-import calculatable.CalculatorFactory.CalculatorType;
+import calculatable.operatable.OperatorFactory;
+import calculatable.operatable.OperatorFactory.OperatorType;
 
 public class MainApp {
 
 	public static void main(String[] args) {
 		System.out.println("START CALCULATOR");
 		
-		CalculatorFactory factory = new CalculatorFactory();
+		OperatorFactory factory = new OperatorFactory();
 		// µ¡¼À
-		int resultAdd = factory.getCalculor(CalculatorType.ADD).operate(10, 2);
+		int resultAdd = factory.getCalculor(OperatorType.ADD).operate(10, 2);
 		System.out.println("resultAdd:" + resultAdd);
 		
 		// »¬¼À
-		int resultSubtact = factory.getCalculor(CalculatorType.SUBTRACT).operate(10, 2);
+		int resultSubtact = factory.getCalculor(OperatorType.SUBTRACT).operate(10, 2);
 		System.out.println("resultSubtact:" + resultSubtact);
 		
 		// °ö¼À
-		int resultMultiply = factory.getCalculor(CalculatorType.MULTIPLY).operate(10, 2);
+		int resultMultiply = factory.getCalculor(OperatorType.MULTIPLY).operate(10, 2);
 		System.out.println("resultMultiply:" + resultMultiply);
 		
 		// ³ª´°¼À
-		int resultDivision = factory.getCalculor(CalculatorType.DIVISION).operate(10, 2);
+		int resultDivision = factory.getCalculor(OperatorType.DIVISION).operate(10, 2);
 		System.out.println("resultDivision:" + resultDivision);
 		
 		
