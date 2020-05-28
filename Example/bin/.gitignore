@@ -1,5 +1,3 @@
-/calltest/
-/test/
-/classtest/
-/ObjectSizeFetcher.class
-/finaltest/
+/objecttest/
+/equalstest/
+/tostringtest/
