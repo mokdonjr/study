@@ -21,6 +21,9 @@ public class MainApp {
 	
 	public static void main(String[] args) {
 		
+		Integer value = new Integer(10);
+		int v = value.intValue();
+		
 		Person person1 = new Person();
 		person1.setName("º’»ÔπŒ");
 		person1.setAge(28);
