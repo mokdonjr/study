@@ -64,17 +64,13 @@ public class Person extends Thread {
 	public void run() {
 		boolean isSent = false;
 		while (!isSent) {
-			
 			long currentTime = new Date().getTime();
-//			System.out.println("QWER " + personName + " " + target + " " + sendMoney);
 			if (target != null && sendMoney != null) {
 				if (currentTime >= promiseTime) {
-//					System.out.println("ASDF " + personName + " " + money);
 					sendMoney(target, sendMoney);
 					isSent = true;
 				}
 			}
-			
 			if (currentTime >= promiseTime + 1000) {
 				System.out.println(toString());
 				isSent = true;
