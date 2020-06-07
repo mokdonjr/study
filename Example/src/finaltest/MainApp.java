@@ -6,18 +6,18 @@ import finaltest.units.Marine;
 public class MainApp {
 
 	public static void main(String[] args) {
-		// °ø°İÀÚ
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		Marine marineAttacker = new Marine();
 		Firebat firebatAttacker = new Firebat();
 		
-		// ¹æ¾îÀÚ
+		// ï¿½ï¿½ï¿½ï¿½ï¿½
 		Marine defender = new Marine();
 		
-		// ÀüÅõ ¼öÇà!!
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!
 		marineAttacker.damage(defender);
 		firebatAttacker.damage(defender);
 		
-		// ÀüÅõ °á°ú
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		System.out.println(defender.getHp());
 	}
 }
